@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DotNetRocks.Views.HomePage"
+             xmlns:local="clr-namespace:DotNetRocks"
+             xmlns:viewmodels="clr-namespace:DotNetRocks.ViewModels"
+             xmlns:dxcv="http://schemas.devexpress.com/xamarin/2014/forms/collectionview"
+             >
+
+    <ContentPage.BindingContext>
+        <viewmodels:HomePageViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Margin="0,20,0,0"
+                Text=".NET Rocks! Podcast Client"
+                FontAttributes="Bold"
+                TextColor="Black"
+                FontSize="Title"
+                VerticalOptions="StartAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <dxcv:DXCollectionView x:Name="MyCollectionView" 
+                               ItemsSource="{Binding AllShows}">
+                <dxcv:DXCollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding ShowTitle}" 
+                                   TextColor="Black"
+                                   FontSize="Large"/>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding ShowNumber}" />
+                                <Label Text="{Binding DatePublished, StringFormat='Published {0:d}'}" />
+                            </StackLayout>
+                            <Label Text="{Binding Description}" />
+                            <Button Text="Episode Details"
+                                    Command="{Binding GoToDetailsPage,
+                                    Source={RelativeSource AncestorType={x:Type viewmodels:HomePageViewModel}}}"
+                                    CommandParameter="{Binding ShowNumber}" />
+                            <Line Stroke="Gray" X1="0" X2="500" StrokeThickness="2" Margin="0,10,0,10" />
+                        </StackLayout>
+                    </DataTemplate>
+                </dxcv:DXCollectionView.ItemTemplate>
+                <dxcv:DXCollectionView.Margin>
+                    <OnIdiom x:TypeArguments="Thickness" Phone="10,10,10,10" Tablet="71,0,0,0"/>
+                </dxcv:DXCollectionView.Margin>
+            </dxcv:DXCollectionView>
+            
+            <Button Text="Load More Shows" Command="{Binding LoadMoreShows}" />
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
