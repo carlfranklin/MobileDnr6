@@ -12,6 +12,7 @@ namespace DotNetRocks
             InitializeComponent();
             Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
             Routing.RegisterRoute(nameof(DetailPage), typeof(DetailPage));
+            Routing.RegisterRoute(nameof(PlayListManagerPage), typeof(PlayListManagerPage));
         }
     }
 }

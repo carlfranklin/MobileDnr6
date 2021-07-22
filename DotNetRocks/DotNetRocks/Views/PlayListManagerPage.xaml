@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DotNetRocks"
+             xmlns:viewmodels="clr-namespace:DotNetRocks.ViewModels"
+             xmlns:dxcv="http://schemas.devexpress.com/xamarin/2014/forms/collectionview"
+             x:Class="DotNetRocks.Views.PlayListManagerPage">
+
+    <ContentPage.BindingContext>
+        <viewmodels:PlayListManagerPageViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Button Text="Add New" Command="{Binding NewPlayList}" CommandParameter="New PlayList" />
+            <dxcv:DXCollectionView x:Name="MyCollectionView" 
+                               ItemsSource="{Binding PlayLists}">
+                <dxcv:DXCollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal" Spacing ="0.0">
+                                <Label Text="{Binding Name}" />
+                                <Label Text=" (" />
+                                <Label Text="{Binding Shows.Count}" />
+                                <Label Text=") " />
+                                <Label Text="{Binding DateCreated, StringFormat='{d}'}" />
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Button Text="Delete" 
+                                        Command="{Binding Delete,
+                                        Source={RelativeSource AncestorType={x:Type viewmodels:PlayListManagerPageViewModel}}}" 
+                                        CommandParameter="{Binding Name}" />
+                            </StackLayout>
+                            <Line Stroke="Gray" X1="0" X2="500" StrokeThickness="2" Margin="0,10,0,10" />
+                        </StackLayout>
+                    </DataTemplate>
+                </dxcv:DXCollectionView.ItemTemplate>
+                <dxcv:DXCollectionView.Margin>
+                    <OnIdiom x:TypeArguments="Thickness" Phone="10,10,10,10" Tablet="71,0,0,0"/>
+                </dxcv:DXCollectionView.Margin>
+            </dxcv:DXCollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
