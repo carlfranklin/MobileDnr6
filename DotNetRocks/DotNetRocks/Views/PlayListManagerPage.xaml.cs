@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DotNetRocks.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,5 +17,13 @@ namespace DotNetRocks.Views
         {
             InitializeComponent();
         }
+
+        protected override async void OnAppearing()
+        {
+            await Task.Delay(0);
+            var viewModel = (PlayListManagerPageViewModel)BindingContext;
+            viewModel.Page = this;
+        }
+
     }
 }
