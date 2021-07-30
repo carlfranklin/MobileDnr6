@@ -373,7 +373,7 @@ To the *Views* folder, add a new `ContentPage` called *PlayListManagerPage.xaml*
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DotNetRocks"
              xmlns:viewmodels="clr-namespace:DotNetRocks.ViewModels"
-             xmlns:dxcv="http://schemas.devexpress.com/xamarin/2014/forms/collectionview"
+             xmlns:dxcv="clr-namespace:DevExpress.XamarinForms.CollectionView;assembly=DevExpress.XamarinForms.CollectionView"
              x:Class="DotNetRocks.Views.PlayListManagerPage">
 
     <ContentPage.BindingContext>
